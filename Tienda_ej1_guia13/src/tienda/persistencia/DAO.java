@@ -12,16 +12,16 @@ import java.sql.Statement;
  */
 public abstract class DAO {
 
-    protected Connection conexion = null;
-    protected ResultSet resultado = null;
-    protected Statement sentencia = null;
+    protected static Connection conexion = null;
+    protected static ResultSet resultado = null;
+    protected static Statement sentencia = null;
     
-    private final String USER = "root";
-    private final String PASSWORD = "root";
-    private final String DATABASE = "tienda";
-    private final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String USER = "root";
+    private static final String PASSWORD = "root";
+    private static final String DATABASE = "tienda";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
 
-    protected void conectarBase() throws Exception {
+    protected static void conectarBase() throws Exception {
         try {
             Class.forName(DRIVER);
             String urlBaseDeDatos = "jdbc:mysql://localhost:3306/" + DATABASE + "?useSSL=false";
@@ -31,7 +31,7 @@ public abstract class DAO {
         }
     }
 
-    protected void desconectarBase() throws SQLException {
+    protected static void desconectarBase() throws SQLException {
         try {
             if (resultado != null) {
                 resultado.close();
@@ -50,7 +50,7 @@ public abstract class DAO {
         }
     }
 
-    protected void insertarModificarEliminar(String sql) throws Exception {
+    protected static void insertarModificarEliminar(String sql) throws Exception {
         try {
             conectarBase();
             sentencia = conexion.createStatement();
@@ -62,7 +62,7 @@ public abstract class DAO {
         }
     }
 
-    protected void consultarBase(String sql) throws Exception {
+    protected static void consultarBase(String sql) throws Exception {
         try {
             conectarBase();
             sentencia = conexion.createStatement();

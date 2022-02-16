@@ -35,6 +35,6 @@ public class Fabricante {
 
     @Override
     public String toString() {
-        return "Fabricante: \ncodigo: " + codigo + "\nnombre:" + nombre;
+        return "\ncodigo: " + codigo + " | nombre:" + nombre;
     }
 }
